@@ -178,7 +178,7 @@ public class Lane extends Thread implements PinsetterObserver {
 
 		gameNumber = 0;
 
-		setter.subscribe( this );
+		setter.editSubscribers(PubAndSubs.subscribe(this, setter.showSubscribers()));
 		
 		this.start();
 	}
@@ -256,7 +256,7 @@ public class Lane extends Thread implements PinsetterObserver {
 					party = null;
 					partyAssigned = false;
 					
-					publish(lanePublish());
+					PubAndSubs.publish(lanePublish(), subscribers, "Lane");
 					
 					int myIndex = 0;
 					while (scoreIt.hasNext()){
@@ -405,7 +405,7 @@ public class Lane extends Thread implements PinsetterObserver {
 		curScore[ index - 1] = score;
 		scores.put(Cur, curScore);
 		getScore( Cur, frame );
-		publish( lanePublish() );
+		PubAndSubs.publish( lanePublish(), subscribers, "Lane" );
 	}
 
 	/** lanePublish()
@@ -559,9 +559,9 @@ public class Lane extends Thread implements PinsetterObserver {
 	 * @param subscribe	Observer that is to be added
 	 */
 
-	public void subscribe( LaneObserver adding ) {
-		subscribers.add( adding );
-	}
+//	public void subscribe( LaneObserver adding ) {
+//		subscribers.add( adding );
+//	}
 
 	/** unsubscribe
 	 * 
@@ -581,15 +581,15 @@ public class Lane extends Thread implements PinsetterObserver {
 	 * @param event	Event that is to be published
 	 */
 
-	public void publish( LaneEvent event ) {
-		if( subscribers.size() > 0 ) {
-			Iterator eventIterator = subscribers.iterator();
-			
-			while ( eventIterator.hasNext() ) {
-				( (LaneObserver) eventIterator.next()).receiveLaneEvent( event );
-			}
-		}
-	}
+//	public void publish( LaneEvent event ) {
+//		if( subscribers.size() > 0 ) {
+//			Iterator eventIterator = subscribers.iterator();
+//
+//			while ( eventIterator.hasNext() ) {
+//				( (LaneObserver) eventIterator.next()).receiveLaneEvent( event );
+//			}
+//		}
+//	}
 
 	/**
 	 * Accessor to get this Lane's pinsetter
@@ -606,7 +606,7 @@ public class Lane extends Thread implements PinsetterObserver {
 	 */
 	public void pauseGame() {
 		gameIsHalted = true;
-		publish(lanePublish());
+		PubAndSubs.publish(lanePublish(), subscribers, "Lane");
 	}
 	
 	/**
@@ -614,7 +614,13 @@ public class Lane extends Thread implements PinsetterObserver {
 	 */
 	public void unPauseGame() {
 		gameIsHalted = false;
-		publish(lanePublish());
+		PubAndSubs.publish(lanePublish(), subscribers, "Lane");
 	}
 
+	public void editSubscribers(Vector subs){
+		subscribers = subs;
+	}
+	public Vector showSubscribers(){
+		return subscribers;
+	}
 }

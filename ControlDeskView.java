@@ -87,8 +87,8 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 		while (it.hasNext()) {
 			Lane curLane = (Lane) it.next();
 			LaneStatusView laneStat = new LaneStatusView(curLane,(laneCount+1));
-			curLane.subscribe(laneStat);
-			((Pinsetter)curLane.getPinsetter()).subscribe(laneStat);
+			curLane.editSubscribers(PubAndSubs.subscribe(laneStat, curLane.showSubscribers()));
+			((Pinsetter)curLane.getPinsetter()).editSubscribers(PubAndSubs.subscribe(laneStat, ((Pinsetter)curLane.getPinsetter()).showSubscribers()));
 			JPanel lanePanel = laneStat.showLane();
 			lanePanel.setBorder(new TitledBorder("Lane" + ++laneCount ));
 			laneStatusPanel.add(lanePanel);

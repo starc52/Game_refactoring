@@ -17,7 +17,7 @@
  */
 
 
-public interface PinsetterObserver {
+public interface PinsetterObserver extends UnivObserver{
 
 	/** recievePinsetterEvent()
 	 * 

@@ -15,7 +15,7 @@
 
 import java.util.*;
 
-public class ControlDeskEvent {
+public class ControlDeskEvent implements UnivEvent{
 
 	/** A representation of the wait queue, containing party names */
 	private Vector partyQueue;
