@@ -97,7 +97,7 @@ public class ScoreHistoryFile {
 	}
 	public static int lowestOverallScore() throws IOException, FileNotFoundException{
 		Vector scores = new Vector();
-		int minVal=0;
+		int minVal=1000;
 		String[] temp;
 		BufferedReader in =
 				new BufferedReader(new FileReader(SCOREHISTORY_DAT));
