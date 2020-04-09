@@ -39,7 +39,7 @@ import java.text.*;
  *  
  */
 
-public class AddPartyView implements ActionListener, ListSelectionListener, UnivView {
+public class AddPartyView implements ActionListener, ListSelectionListener {
 
 	private int maxSize;
 

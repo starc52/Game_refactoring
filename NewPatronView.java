@@ -25,7 +25,7 @@ import javax.swing.event.*;
 import java.util.*;
 import java.text.*;
 
-public class NewPatronView implements ActionListener, UnivView {
+public class NewPatronView implements ActionListener {
 
 	private int maxSize;
 

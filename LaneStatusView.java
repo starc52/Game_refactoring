@@ -12,7 +12,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.event.*;
 
-public class LaneStatusView implements ActionListener, LaneObserver, PinsetterObserver, UnivView {
+public class LaneStatusView implements ActionListener, LaneObserver, PinsetterObserver {
 
 	private JPanel jp;
 
