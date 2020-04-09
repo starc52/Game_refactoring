@@ -13,8 +13,8 @@
  *
  */
 
-public interface ControlDeskObserver {
+public interface ControlDeskObserver extends UnivObserver{
 
 	public void receiveControlDeskEvent(ControlDeskEvent ce);
 
-}
+};

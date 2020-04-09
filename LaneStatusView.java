@@ -38,10 +38,10 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
 
 		psv = new PinSetterView( laneNum );
 		Pinsetter ps = lane.getPinsetter();
-		ps.subscribe(psv);
+		ps.editSubscribers(PubAndSubs.subscribe(psv, ps.showSubscribers()));
 
 		lv = new LaneView( lane, laneNum );
-		lane.subscribe(lv);
+		lane.editSubscribers(PubAndSubs.subscribe(lv, lane.showSubscribers()));
 
 
 		jp = new JPanel();
@@ -60,31 +60,19 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
 		Insets buttonMargin = new Insets(4, 4, 4, 4);
 
 		viewLane = new JButton("View Lane");
+		viewLane.setEnabled( false );
 		JPanel viewLanePanel = new JPanel();
-		viewLanePanel.setLayout(new FlowLayout());
-		viewLane.addActionListener(this);
-		viewLanePanel.add(viewLane);
+		buttonPanel.add(makeButtonWithPanel(viewLane, viewLanePanel));
 
 		viewPinSetter = new JButton("Pinsetter");
+		viewPinSetter.setEnabled( false );
 		JPanel viewPinSetterPanel = new JPanel();
-		viewPinSetterPanel.setLayout(new FlowLayout());
-		viewPinSetter.addActionListener(this);
-		viewPinSetterPanel.add(viewPinSetter);
+		buttonPanel.add(makeButtonWithPanel(viewPinSetter, viewPinSetterPanel));
 
 		maintenance = new JButton("     ");
 		maintenance.setBackground( Color.GREEN );
 		JPanel maintenancePanel = new JPanel();
-		maintenancePanel.setLayout(new FlowLayout());
-		maintenance.addActionListener(this);
-		maintenancePanel.add(maintenance);
-
-		viewLane.setEnabled( false );
-		viewPinSetter.setEnabled( false );
-
-
-		buttonPanel.add(viewLanePanel);
-		buttonPanel.add(viewPinSetterPanel);
-		buttonPanel.add(maintenancePanel);
+		buttonPanel.add(makeButtonWithPanel(maintenance, maintenancePanel));
 
 		jp.add( cLabel );
 		jp.add( curBowler );
@@ -152,4 +140,10 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
 		
 	}
 
+	public JPanel makeButtonWithPanel(JButton bttn, JPanel bttnPanel){
+		bttnPanel.setLayout(new FlowLayout());
+		bttn.addActionListener(this);
+		bttnPanel.add(bttn);
+		return  bttnPanel;
+	}
 }

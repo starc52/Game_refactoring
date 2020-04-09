@@ -57,24 +57,11 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 
 		addParty = new JButton("Add Party");
 		JPanel addPartyPanel = new JPanel();
-		addPartyPanel.setLayout(new FlowLayout());
-		addParty.addActionListener(this);
-		addPartyPanel.add(addParty);
-		controlsPanel.add(addPartyPanel);
-
-		assign = new JButton("Assign Lanes");
-		JPanel assignPanel = new JPanel();
-		assignPanel.setLayout(new FlowLayout());
-		assign.addActionListener(this);
-		assignPanel.add(assign);
-//		controlsPanel.add(assignPanel);
+		controlsPanel.add(makeButtonWithPanel(addParty, addPartyPanel));
 
 		finished = new JButton("Finished");
 		JPanel finishedPanel = new JPanel();
-		finishedPanel.setLayout(new FlowLayout());
-		finished.addActionListener(this);
-		finishedPanel.add(finished);
-		controlsPanel.add(finishedPanel);
+		controlsPanel.add(makeButtonWithPanel(finished, finishedPanel));
 
 		// Lane Status Panel
 		JPanel laneStatusPanel = new JPanel();
@@ -87,8 +74,8 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 		while (it.hasNext()) {
 			Lane curLane = (Lane) it.next();
 			LaneStatusView laneStat = new LaneStatusView(curLane,(laneCount+1));
-			curLane.subscribe(laneStat);
-			((Pinsetter)curLane.getPinsetter()).subscribe(laneStat);
+			curLane.editSubscribers(PubAndSubs.subscribe(laneStat, curLane.showSubscribers()));
+			((Pinsetter)curLane.getPinsetter()).editSubscribers(PubAndSubs.subscribe(laneStat, ((Pinsetter)curLane.getPinsetter()).showSubscribers()));
 			JPanel lanePanel = laneStat.showLane();
 			lanePanel.setBorder(new TitledBorder("Lane" + ++laneCount ));
 			laneStatusPanel.add(lanePanel);
@@ -176,5 +163,12 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 
 	public void receiveControlDeskEvent(ControlDeskEvent ce) {
 		partyList.setListData(((Vector) ce.getPartyQueue()));
+	}
+
+	public JPanel makeButtonWithPanel(JButton bttn, JPanel bttnPanel){
+		bttnPanel.setLayout(new FlowLayout());
+		bttn.addActionListener(this);
+		bttnPanel.add(bttn);
+		return  bttnPanel;
 	}
 }

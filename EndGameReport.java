@@ -67,18 +67,11 @@ public class EndGameReport implements ActionListener, ListSelectionListener {
 
 		printButton = new JButton("Print Report");
 		JPanel printButtonPanel = new JPanel();
-		printButtonPanel.setLayout(new FlowLayout());
-		printButton.addActionListener(this);
-		printButtonPanel.add(printButton);
+		buttonPanel.add(makeButtonWithPanel(printButton, printButtonPanel));
 
 		finished = new JButton("Finished");
 		JPanel finishedPanel = new JPanel();
-		finishedPanel.setLayout(new FlowLayout());
-		finished.addActionListener(this);
-		finishedPanel.add(finished);
-
-		buttonPanel.add(printButton);
-		buttonPanel.add(finished);
+		buttonPanel.add(makeButtonWithPanel(finished, finishedPanel));
 
 		// Clean up main panel
 		colPanel.add(partyPanel);
@@ -138,6 +131,11 @@ public class EndGameReport implements ActionListener, ListSelectionListener {
 		String partyName="wank";
 		EndGameReport e = new EndGameReport( partyName, party );
 	}
-	
+	public JPanel makeButtonWithPanel(JButton bttn, JPanel bttnPanel){
+		bttnPanel.setLayout(new FlowLayout());
+		bttn.addActionListener(this);
+		bttnPanel.add(bttn);
+		return  bttnPanel;
+	}
 }
 

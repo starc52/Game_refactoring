@@ -195,9 +195,14 @@ public class Pinsetter {
 	 * @pre none
 	 * @post the subscriber object will recieve events when their generated
 	 */
-	public void subscribe(PinsetterObserver subscriber) {
-		subscribers.add(subscriber);
+//	public void subscribe(PinsetterObserver subscriber) {
+//		subscribers.add(subscriber);
+//	}
+	public void editSubscribers(Vector subs){
+		subscribers = subs;
 	}
-
+	public Vector showSubscribers(){
+		return subscribers;
+	}
 };
 

@@ -90,18 +90,12 @@ public class NewPatronView implements ActionListener {
 
 		finished = new JButton("Add Patron");
 		JPanel finishedPanel = new JPanel();
-		finishedPanel.setLayout(new FlowLayout());
-		finished.addActionListener(this);
-		finishedPanel.add(finished);
+		buttonPanel.add(makeButtonWithPanel(finished, finishedPanel));
 
 		abort = new JButton("Abort");
 		JPanel abortPanel = new JPanel();
-		abortPanel.setLayout(new FlowLayout());
-		abort.addActionListener(this);
-		abortPanel.add(abort);
+		buttonPanel.add(makeButtonWithPanel(abort, abortPanel));
 
-		buttonPanel.add(abortPanel);
-		buttonPanel.add(finishedPanel);
 
 		// Clean up main panel
 		colPanel.add(patronPanel, "Center");
@@ -152,5 +146,10 @@ public class NewPatronView implements ActionListener {
 	public String getEmail() {
 		return email;
 	}
-
+	public JPanel makeButtonWithPanel(JButton bttn, JPanel bttnPanel){
+		bttnPanel.setLayout(new FlowLayout());
+		bttn.addActionListener(this);
+		bttnPanel.add(bttn);
+		return  bttnPanel;
+	}
 }

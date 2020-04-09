@@ -8,7 +8,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.util.*;
 
-public class LaneView implements LaneObserver, ActionListener {
+public class LaneView implements LaneObserver, ActionListener{
 
 	private int roll;
 	private boolean initDone = true;

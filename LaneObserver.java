@@ -11,7 +11,7 @@
  *
  */
 
-public interface LaneObserver {
+public interface LaneObserver extends UnivObserver{
 	public void receiveLaneEvent(LaneEvent le);
 };
 

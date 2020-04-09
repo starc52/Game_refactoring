@@ -110,7 +110,7 @@ class ControlDesk extends Thread {
 				curLane.assignParty(((Party) partyQueue.next()));
 			}
 		}
-		publish(new ControlDeskEvent(getPartyQueue()));
+		PubAndSubs.publish(new ControlDeskEvent(getPartyQueue()), subscribers, "Control");
 	}
 
     /**
@@ -136,7 +136,7 @@ class ControlDesk extends Thread {
 		}
 		Party newParty = new Party(partyBowlers);
 		partyQueue.add(newParty);
-		publish(new ControlDeskEvent(getPartyQueue()));
+		PubAndSubs.publish(new ControlDeskEvent(getPartyQueue()), subscribers, "Control");
 	}
 
     /**
@@ -173,9 +173,9 @@ class ControlDesk extends Thread {
      *
      */
 
-	public void subscribe(ControlDeskObserver adding) {
-		subscribers.add(adding);
-	}
+//	public void subscribe(ControlDeskObserver adding) {
+//		subscribers.add(adding);
+//	}
 
     /**
      * Broadcast an event to subscribing objects.
@@ -184,12 +184,12 @@ class ControlDesk extends Thread {
      *
      */
 
-	public void publish(ControlDeskEvent event) {
-		Iterator eventIterator = subscribers.iterator();
-		while (eventIterator.hasNext()) {
-			((ControlDeskObserver) eventIterator.next()).receiveControlDeskEvent(event);
-		}
-	}
+//	public void publish(ControlDeskEvent event) {
+//		Iterator eventIterator = subscribers.iterator();
+//		while (eventIterator.hasNext()) {
+//			((ControlDeskObserver) eventIterator.next()).receiveControlDeskEvent(event);
+//		}
+//	}
 
     /**
      * Accessor method for lanes
@@ -200,5 +200,11 @@ class ControlDesk extends Thread {
 
 	public HashSet getLanes() {
 		return lanes;
+	}
+	public void editSubscribers(Vector subs){
+		subscribers = subs;
+	}
+	public Vector showSubscribers(){
+		return subscribers;
 	}
 }
