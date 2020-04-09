@@ -14,7 +14,7 @@ public class PubAndSubs {
                 ((ControlDeskObserver) eventIterator.next()).receiveControlDeskEvent((ControlDeskEvent) uEvent);
             }
         }
-        if(identify == (String)"Lane"){
+        else if(identify == (String)"Lane"){
             if( subscribers.size() > 0 ) {
                 Iterator eventIterator = subscribers.iterator();
 

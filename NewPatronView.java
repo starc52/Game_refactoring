@@ -25,7 +25,7 @@ import javax.swing.event.*;
 import java.util.*;
 import java.text.*;
 
-public class NewPatronView implements ActionListener {
+public class NewPatronView implements ActionListener, UnivView {
 
 	private int maxSize;
 
@@ -88,20 +88,20 @@ public class NewPatronView implements ActionListener {
 
 		Insets buttonMargin = new Insets(4, 4, 4, 4);
 
-		finished = new JButton("Add Patron");
-		JPanel finishedPanel = new JPanel();
-		finishedPanel.setLayout(new FlowLayout());
-		finished.addActionListener(this);
-		finishedPanel.add(finished);
+//		finished = new JButton("Add Patron");
+//		JPanel finishedPanel = new JPanel();
+//		finishedPanel.setLayout(new FlowLayout());
+//		finished.addActionListener(this);
+//		finishedPanel.add(finished);
+//
+//		abort = new JButton("Abort");
+//		JPanel abortPanel = new JPanel();
+//		abortPanel.setLayout(new FlowLayout());
+//		abort.addActionListener(this);
+//		abortPanel.add(abort);
 
-		abort = new JButton("Abort");
-		JPanel abortPanel = new JPanel();
-		abortPanel.setLayout(new FlowLayout());
-		abort.addActionListener(this);
-		abortPanel.add(abort);
-
-		buttonPanel.add(abortPanel);
-		buttonPanel.add(finishedPanel);
+		buttonPanel.add(ButtonMaker.makeButtonWithPanel("Abort", this, "NewPatron"));
+		buttonPanel.add(ButtonMaker.makeButtonWithPanel("Add Patron", this, "NewPatron"));
 
 		// Clean up main panel
 		colPanel.add(patronPanel, "Center");

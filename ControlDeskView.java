@@ -21,7 +21,7 @@ import javax.swing.event.*;
 
 import java.util.*;
 
-public class ControlDeskView implements ActionListener, ControlDeskObserver {
+public class ControlDeskView implements ActionListener, ControlDeskObserver , UnivView{
 
 	private JButton addParty, finished, assign;
 	private JFrame win;
@@ -55,26 +55,26 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 		controlsPanel.setLayout(new GridLayout(3, 1));
 		controlsPanel.setBorder(new TitledBorder("Controls"));
 
-		addParty = new JButton("Add Party");
-		JPanel addPartyPanel = new JPanel();
-		addPartyPanel.setLayout(new FlowLayout());
-		addParty.addActionListener(this);
-		addPartyPanel.add(addParty);
-		controlsPanel.add(addPartyPanel);
+//		addParty = new JButton("Add Party");
+//		JPanel addPartyPanel = new JPanel();
+//		addPartyPanel.setLayout(new FlowLayout());
+//		addParty.addActionListener(this);
+//		addPartyPanel.add(addParty);
+		controlsPanel.add(ButtonMaker.makeButtonWithPanel("Add Party", this, "Control"));
 
-		assign = new JButton("Assign Lanes");
-		JPanel assignPanel = new JPanel();
-		assignPanel.setLayout(new FlowLayout());
-		assign.addActionListener(this);
-		assignPanel.add(assign);
+//		assign = new JButton("Assign Lanes");
+//		JPanel assignPanel = new JPanel();
+//		assignPanel.setLayout(new FlowLayout());
+//		assign.addActionListener(this);
+//		assignPanel.add(assign);
 //		controlsPanel.add(assignPanel);
 
-		finished = new JButton("Finished");
-		JPanel finishedPanel = new JPanel();
-		finishedPanel.setLayout(new FlowLayout());
-		finished.addActionListener(this);
-		finishedPanel.add(finished);
-		controlsPanel.add(finishedPanel);
+//		finished = new JButton("Finished");
+//		JPanel finishedPanel = new JPanel();
+//		finishedPanel.setLayout(new FlowLayout());
+//		finished.addActionListener(this);
+//		finishedPanel.add(finished);
+		controlsPanel.add(ButtonMaker.makeButtonWithPanel("Finished", this, "Control"));
 
 		// Lane Status Panel
 		JPanel laneStatusPanel = new JPanel();

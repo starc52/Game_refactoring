@@ -19,7 +19,7 @@ import javax.swing.*;
 import java.util.Vector;
 
 
-public class PinSetterView implements PinsetterObserver {
+public class PinSetterView implements PinsetterObserver, UnivView {
 
 
     private Vector pinVect = new Vector ( );
