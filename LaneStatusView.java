@@ -59,32 +59,20 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
 
 		Insets buttonMargin = new Insets(4, 4, 4, 4);
 
-//		viewLane = new JButton("View Lane");
-//		JPanel viewLanePanel = new JPanel();
-//		viewLanePanel.setLayout(new FlowLayout());
-//		viewLane.addActionListener(this);
-//		viewLanePanel.add(viewLane);
-//
-//		viewPinSetter = new JButton("Pinsetter");
-//		JPanel viewPinSetterPanel = new JPanel();
-//		viewPinSetterPanel.setLayout(new FlowLayout());
-//		viewPinSetter.addActionListener(this);
-//		viewPinSetterPanel.add(viewPinSetter);
-//
-//		maintenance = new JButton("     ");
-//		maintenance.setBackground( Color.GREEN );
-//		JPanel maintenancePanel = new JPanel();
-//		maintenancePanel.setLayout(new FlowLayout());
-//		maintenance.addActionListener(this);
-//		maintenancePanel.add(maintenance);
-//
-//		viewLane.setEnabled( false );
-//		viewPinSetter.setEnabled( false );
+		viewLane = new JButton("View Lane");
+		viewLane.setEnabled( false );
+		JPanel viewLanePanel = new JPanel();
+		buttonPanel.add(makeButtonWithPanel(viewLane, viewLanePanel));
 
+		viewPinSetter = new JButton("Pinsetter");
+		viewPinSetter.setEnabled( false );
+		JPanel viewPinSetterPanel = new JPanel();
+		buttonPanel.add(makeButtonWithPanel(viewPinSetter, viewPinSetterPanel));
 
-		buttonPanel.add(ButtonMaker.makeButtonWithPanel("View Lane", this, "LaneStatus"));
-		buttonPanel.add(ButtonMaker.makeButtonWithPanel("Pinsetter", this, "LaneStatus"));
-		buttonPanel.add(ButtonMaker.makeButtonWithPanel("     ", this, "LaneStatus"));
+		maintenance = new JButton("     ");
+		maintenance.setBackground( Color.GREEN );
+		JPanel maintenancePanel = new JPanel();
+		buttonPanel.add(makeButtonWithPanel(maintenance, maintenancePanel));
 
 		jp.add( cLabel );
 		jp.add( curBowler );
@@ -152,4 +140,10 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
 		
 	}
 
+	public JPanel makeButtonWithPanel(JButton bttn, JPanel bttnPanel){
+		bttnPanel.setLayout(new FlowLayout());
+		bttn.addActionListener(this);
+		bttnPanel.add(bttn);
+		return  bttnPanel;
+	}
 }

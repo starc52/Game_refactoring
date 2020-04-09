@@ -55,26 +55,13 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver , Un
 		controlsPanel.setLayout(new GridLayout(3, 1));
 		controlsPanel.setBorder(new TitledBorder("Controls"));
 
-//		addParty = new JButton("Add Party");
-//		JPanel addPartyPanel = new JPanel();
-//		addPartyPanel.setLayout(new FlowLayout());
-//		addParty.addActionListener(this);
-//		addPartyPanel.add(addParty);
-		controlsPanel.add(ButtonMaker.makeButtonWithPanel("Add Party", this, "Control"));
+		addParty = new JButton("Add Party");
+		JPanel addPartyPanel = new JPanel();
+		controlsPanel.add(makeButtonWithPanel(addParty, addPartyPanel));
 
-//		assign = new JButton("Assign Lanes");
-//		JPanel assignPanel = new JPanel();
-//		assignPanel.setLayout(new FlowLayout());
-//		assign.addActionListener(this);
-//		assignPanel.add(assign);
-//		controlsPanel.add(assignPanel);
-
-//		finished = new JButton("Finished");
-//		JPanel finishedPanel = new JPanel();
-//		finishedPanel.setLayout(new FlowLayout());
-//		finished.addActionListener(this);
-//		finishedPanel.add(finished);
-		controlsPanel.add(ButtonMaker.makeButtonWithPanel("Finished", this, "Control"));
+		finished = new JButton("Finished");
+		JPanel finishedPanel = new JPanel();
+		controlsPanel.add(makeButtonWithPanel(finished, finishedPanel));
 
 		// Lane Status Panel
 		JPanel laneStatusPanel = new JPanel();
@@ -176,5 +163,12 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver , Un
 
 	public void receiveControlDeskEvent(ControlDeskEvent ce) {
 		partyList.setListData(((Vector) ce.getPartyQueue()));
+	}
+
+	public JPanel makeButtonWithPanel(JButton bttn, JPanel bttnPanel){
+		bttnPanel.setLayout(new FlowLayout());
+		bttn.addActionListener(this);
+		bttnPanel.add(bttn);
+		return  bttnPanel;
 	}
 }

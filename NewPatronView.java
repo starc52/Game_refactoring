@@ -88,20 +88,14 @@ public class NewPatronView implements ActionListener, UnivView {
 
 		Insets buttonMargin = new Insets(4, 4, 4, 4);
 
-//		finished = new JButton("Add Patron");
-//		JPanel finishedPanel = new JPanel();
-//		finishedPanel.setLayout(new FlowLayout());
-//		finished.addActionListener(this);
-//		finishedPanel.add(finished);
-//
-//		abort = new JButton("Abort");
-//		JPanel abortPanel = new JPanel();
-//		abortPanel.setLayout(new FlowLayout());
-//		abort.addActionListener(this);
-//		abortPanel.add(abort);
+		finished = new JButton("Add Patron");
+		JPanel finishedPanel = new JPanel();
+		buttonPanel.add(makeButtonWithPanel(finished, finishedPanel));
 
-		buttonPanel.add(ButtonMaker.makeButtonWithPanel("Abort", this, "NewPatron"));
-		buttonPanel.add(ButtonMaker.makeButtonWithPanel("Add Patron", this, "NewPatron"));
+		abort = new JButton("Abort");
+		JPanel abortPanel = new JPanel();
+		buttonPanel.add(makeButtonWithPanel(abort, abortPanel));
+
 
 		// Clean up main panel
 		colPanel.add(patronPanel, "Center");
@@ -152,5 +146,10 @@ public class NewPatronView implements ActionListener, UnivView {
 	public String getEmail() {
 		return email;
 	}
-
+	public JPanel makeButtonWithPanel(JButton bttn, JPanel bttnPanel){
+		bttnPanel.setLayout(new FlowLayout());
+		bttn.addActionListener(this);
+		bttnPanel.add(bttn);
+		return  bttnPanel;
+	}
 }
