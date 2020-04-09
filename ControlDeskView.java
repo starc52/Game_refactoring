@@ -23,7 +23,7 @@ import java.util.*;
 
 public class ControlDeskView implements ActionListener, ControlDeskObserver {
 
-	private JButton addParty, finished, assign;
+	private JButton addParty, finished, databaseQuery;
 	private JFrame win;
 	private JList partyList;
 	
@@ -62,6 +62,11 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 		finished = new JButton("Finished");
 		JPanel finishedPanel = new JPanel();
 		controlsPanel.add(makeButtonWithPanel(finished, finishedPanel));
+
+		databaseQuery = new JButton(("Query Database"));
+		JPanel databaseQueryPanel = new JPanel();
+		controlsPanel.add(makeButtonWithPanel(databaseQuery, databaseQueryPanel));
+
 
 		// Lane Status Panel
 		JPanel laneStatusPanel = new JPanel();
@@ -134,12 +139,12 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 		if (e.getSource().equals(addParty)) {
 			AddPartyView addPartyWin = new AddPartyView(this, maxMembers);
 		}
-		if (e.getSource().equals(assign)) {
-			controlDesk.assignLane();
-		}
 		if (e.getSource().equals(finished)) {
 			win.hide();
 			System.exit(0);
+		}
+		if(e.getSource().equals(databaseQuery)){
+			DatabaseQueryView viewquery = new DatabaseQueryView(this);
 		}
 	}
 
